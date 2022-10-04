@@ -7,11 +7,11 @@
 	<div class="login login-with-news-feed">
 		<!-- begin news-feed -->
 		<div class="news-feed">
-			<div class="news-image" style="background-image: url(/assets/img/login-bg/login-bg-11.jpg)"></div>
+			<div class="news-image" style="background-image: url({{ $about['image'] }})"></div>
 			<div class="news-caption">
-				<h4 class="caption-title"><b>Color</b> Admin App</h4>
+				<h4 class="caption-title">{{ $about['name'] }}</h4>
 				<p>
-					Download the Color Admin app for iPhone®, iPad®, and Android™. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+{{--					Download the Color Admin app for iPhone®, iPad®, and Android™. Lorem ipsum dolor sit amet, consectetur adipiscing elit.--}}
 				</p>
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 			<!-- begin login-header -->
 			<div class="login-header">
 				<div class="brand">
-					<span class="logo"></span> <b>Color</b> Admin
+					<span class="logo"></span> <b></b> Admin
 				</div>
 				<div class="icon">
 					<i class="fa fa-sign-in-alt"></i>
@@ -49,11 +49,11 @@
                         @enderror
 					</div>
 					<div class="login-buttons">
-						<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+						<button type="submit" class="btn btn-success btn-block btn-lg">Вход</button>
 					</div>
 					<hr />
 					<p class="text-center text-grey-darker mb-0">
-						&copy; Color Admin All Right Reserved 2020
+						{{ $about['name'] }}
 					</p>
 				</form>
 			</div>

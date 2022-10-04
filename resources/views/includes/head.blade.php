@@ -1,5 +1,6 @@
 <meta charset="utf-8" />
-<title>Color Admin | @yield('title')</title>
+<title>{{ $about['name'] }} | @yield('title')</title>
+<link rel = "icon" href ="{{ $about['logo'] }}" type = "image/x-icon">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />

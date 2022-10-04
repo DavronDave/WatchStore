@@ -14,27 +14,27 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('users')->delete();
-
+        
         \DB::table('users')->insert(array (
-            0 =>
+            0 => 
             array (
-                'id' => 1,
-                'name' => 'admin',
-                'username' => 'admin',
-                'last_seen' => NULL,
-                'avatar' => NULL,
-                'status' => 'active',
-                'role' => 'admin',
-                'password' => '$2y$10$wL7tnXoQMKo0r3fCg4aC3.69ADUJgCu/nWGFN90Nwk2NM6LbQh5pO',
-                'remember_token' => NULL,
+                'avatar' => 'storage/user/1646978342_uzgerb.svg',
                 'created_at' => NULL,
-                'updated_at' => NULL,
+                'id' => 1,
+                'last_seen' => NULL,
+                'name' => 'Adminstrator',
+                'password' => '$2y$10$eOsywh3PaGEsgvEC3w104ekBEPmak6ENoj2GMY3FYF5/PicPOoqCO',
+                'remember_token' => NULL,
+                'role' => 'admin',
+                'status' => 'active',
+                'updated_at' => '2022-03-11 11:01:02',
+                'username' => 'admin',
             ),
         ));
-
-
+        
+        
     }
 }

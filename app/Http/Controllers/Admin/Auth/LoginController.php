@@ -20,9 +20,9 @@ class LoginController extends Controller
         $role = $user->role;
         switch ($role) {
             case User::ADMIN_ROLE:
-                return '/home';
+                return '/admin/home';
             default:
-                return '/login';
+                return Auth::logout();
         }
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class Role
@@ -17,14 +18,17 @@ class Role
      */
     public function handle(Request $request, Closure $next, String $role)
     {
-        if (!Auth::check()) // This isnt necessary, it should be part of your 'auth' middleware
-        return redirect('/');
+        if (!Auth::check()) {
+            return redirect('/login');
+        } // This isnt necessary, it should be part of your 'auth' middleware
 
         $user = Auth::user();
 
-        if($user->role == $role)
+        if($user->role == $role) {
+            App::setLocale('ru');
             return $next($request);
+        }
 
-        return redirect('/');
+        return redirect('admin/home');
     }
 }
