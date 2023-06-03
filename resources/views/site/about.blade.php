@@ -1,42 +1,151 @@
-@extends('site.layouts.app')
-@section('title', __('menus.about'))
-
-@section('body')
-
-    <section class="about" id="minHeight">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- mobile metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<!-- site metas -->
+<title>About</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- bootstrap css -->
+<link rel="stylesheet" type="text/css" href="/site/css/bootstrap.min.css">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="{{ asset('/site/css/style.css') }}">
+<!-- Responsive-->
+<link rel="stylesheet" href="/site/css/responsive.css">
+<!-- fevicon -->
+<link rel="icon" href="/site/images/fevicon.png" type="image/gif" />
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="/site/css/jquery.mCustomScrollbar.min.css">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets -->
+<link rel="stylesheet" href="/site/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/site/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body>
+	<!-- header section start -->
+	<div class="header_section">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="logo"><a href="index.html"><img src="/site/images/logo.png"></a></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('site.index') }}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('site.about') }}">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('site.products') }}">OUR PRODUCTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('site.contact')}}">CONTACT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="/site/images/search-icon.png"></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">SIGN IN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">REGISTER</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+	</div>
+	<!-- header section end -->
+  <!-- about section start -->
+  <div class="about_section layout_padding">
+    <div class="container">
+        @foreach($data as $about_company)
+      <div class="row">
+        <div class="col-md-6">
+          <div class=""><img src="images/img-2.png"></div>
+        </div>
+        <div class="col-md-6">
+          <h1 class="about_text">{{$about_company->name}}</h1>
+          <p class="lorem_text">{{$about_company->description}}</p>
+          <div class="shop_bt_2"><a href="#">Shop Now</a></div>
+        </div>
+      </div>
+        @endforeach
+    </div>
+  </div>
+  <!-- about section end -->
+  <!-- footer section start -->
+    <div class="section_footer ">
         <div class="container">
-            <ol class="breadcrumb custom">
-                <li>
-                    <a href="{{ route('site.index') }}">
-                        <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M15.6682 7.43442L8.84893 0.618614L8.39184 0.161522C8.28769 0.0580644 8.14685 0 8.00005 0C7.85325 0 7.71241 0.0580644 7.60826 0.161522L0.331827 7.43442C0.225114 7.54073 0.140779 7.66733 0.0837996 7.80677C0.0268203 7.9462 -0.00164843 8.09564 7.37152e-05 8.24626C0.00712494 8.86749 0.524225 9.36341 1.14554 9.36341H1.89559V15.1115H14.1046V9.36341H14.8706C15.0941 9.36342 15.3125 9.29711 15.4983 9.17289C15.6841 9.04867 15.8289 8.87212 15.9143 8.66558C15.9997 8.45904 16.0219 8.23181 15.9781 8.01265C15.9343 7.79349 15.8264 7.59225 15.6682 7.43442ZM8.98823 13.8408H7.01173V10.2405H8.98823V13.8408ZM12.8339 8.09272V13.8408H10.1179V9.81696C10.1179 9.72425 10.0996 9.63244 10.0642 9.54678C10.0287 9.46113 9.97671 9.3833 9.91116 9.31774C9.8456 9.25218 9.76777 9.20019 9.68211 9.16472C9.59646 9.12925 9.50465 9.11101 9.41194 9.11103H6.58817C6.49546 9.11101 6.40365 9.12925 6.31799 9.16472C6.23234 9.20019 6.1545 9.25218 6.08895 9.31774C6.02339 9.3833 5.9714 9.46113 5.93593 9.54678C5.90046 9.63244 5.88221 9.72425 5.88224 9.81696V13.8408H3.16616V8.09272H1.47191L8.00181 1.56817L8.40948 1.97585L14.53 8.09277L12.8339 8.09272Z"
-                                fill="black"
-                                fill-opacity="0.55"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>{{ __('menus.about') }}</li>
-            </ol>
-            <div class="about__main">
-                <h1 class="top__border">{{ __('menus.about') }}</h1>
-                <div class="forText">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {!! $data['description'] !!}
+            <div class="footer_section_2">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <h2 class="account_text">About Us</h2>
+                        <p class="ipsum_text_2">dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam,
+                            quisdotempor incididunt r</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <h2 class="account_text">Useful Link</h2>
+                        <div class="useful_link">
+                            <ul>
+                                <li><a href="#">Video games</a></li>
+                                <li><a href="#">Remote control</a></li>
+                                <li><a href="#">3d controller</a></li>
+                            </ul>
                         </div>
-                        <div class="col-lg-6">
-                            <img src="{{ $data['image'] }}" width="100%" alt=""/>
-                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <h2 class="account_text">Contact Us</h2>
+                        <p class="ipsum_text_2">dolor sit amet, consectetur magna aliqua. quisdotempor incididunt ut e </p>
                     </div>
                 </div>
             </div>
+            <div class="social_icon">
+                <ul>
+                    <li><a href="#"><img src="/site/images/fb-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/twitter-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/linkdin-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/instagram-icon.png"></a></li>
+                </ul>
+            </div>
         </div>
-    </section>
-
-@endsection
+    </div>
+  <!-- footer section end -->
+  <!-- copyright section start -->
+  <div class="copyright_section">
+    <div class="container">
+      <p class="copyright_text">Copyright 2020 All Right Reserved By <a href="https://html.design/"> Free html Templates</p>
+    </div>
+  </div>
+  <!-- copyright section end -->
+  <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript -->
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+        });
+    </script>
+</body>
+</html>

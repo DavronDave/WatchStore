@@ -24,11 +24,11 @@
                 <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
                 <div class="stats-content">
                     <div class="stats-title">ВСЕГО ПРОЕКТОВ</div>
-                    <div class="stats-number"><span data-animation="number" data-value="{{ count($projects) }}">0</span></div>
+                    <div class="stats-number"><span data-animation="number" data-value="3">0</span></div>
                     <div class="stats-progress progress">
                         <div class="progress-bar" style="width: 100%;"></div>
                     </div>
-                    <a href="{{ route('admin.project.index') }}">
+                    <a href="#">
                         <div class="stats-desc">Просмотр деталей <i class="fa fa-arrow-alt-circle-right"></i></div>
                     </a>
                 </div>
@@ -42,11 +42,11 @@
                 <div class="stats-icon stats-icon-lg"><i class="fa fa-newspaper fa-fw"></i></div>
                 <div class="stats-content">
                     <div class="stats-title">ВСЕГО НОВОСТЕЙ</div>
-                    <div class="stats-number"><span data-animation="number" data-value="{{ $counts['articles'] }}">0</span></div>
+                    <div class="stats-number"><span data-animation="number" data-value="5">0</span></div>
                     <div class="stats-progress progress">
                         <div class="progress-bar" style="width: 100%;"></div>
                     </div>
-                    <a href="{{ route('admin.article.index') }}">
+                    <a href="#">
                         <div class="stats-desc">Просмотр деталей <i class="fa fa-arrow-alt-circle-right"></i></div>
                     </a>
                 </div>
@@ -60,11 +60,11 @@
                 <div class="stats-icon stats-icon-lg"><i class="fa fa-file-archive fa-fw"></i></div>
                 <div class="stats-content">
                     <div class="stats-title">ВСЕГО ДОКУМЕНТОВ</div>
-                    <div class="stats-number"><span data-animation="number" data-value="{{ $counts['documents'] }}">0</span></div>
+                    <div class="stats-number"><span data-animation="number" data-value="3">0</span></div>
                     <div class="stats-progress progress">
                         <div class="progress-bar" style="width: 100%;"></div>
                     </div>
-                    <a href="{{ route('admin.regulation.index') }}">
+                    <a href="#">
                         <div class="stats-desc">Просмотр деталей <i class="fa fa-arrow-alt-circle-right"></i></div>
                     </a>
                 </div>
@@ -77,11 +77,11 @@
                 <div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
                 <div class="stats-content">
                     <div class="stats-title">ВСЕГО ЗАЯВОК</div>
-                    <div class="stats-number"><span data-animation="number" data-value="{{ $counts['requests'] }}">0</span></div>
+                    <div class="stats-number"><span data-animation="number" data-value="2">0</span></div>
                     <div class="stats-progress progress">
                         <div class="progress-bar" style="width: 100%;"></div>
                     </div>
-                    <a href="{{ route('admin.request.index') }}">
+                    <a href="#">
                         <div class="stats-desc">Просмотр деталей <i class="fa fa-arrow-alt-circle-right"></i></div>
                     </a>
                 </div>
@@ -126,40 +126,40 @@
     <script type="text/javascript">
         ymaps.ready(init);
 
-        function init() {
-            let projects = @json($projects, JSON_UNESCAPED_UNICODE);
-            let features = [];
-            for (const [key, project] of Object.entries(projects)) {
-                features.push({
-                    type: "Feature",
-                    id: key,
-                    geometry: {
-                        type: "Point",
-                        coordinates: [project['point_y'], project['point_x']]
-                    },
-                    properties: {
-                        balloonContent: 'Проект: ' + project['name'] + '<br>' + project['region']
-                    }
-                })
-            }
-            let map = new ymaps.Map('map', {
-                center: [41.61094654336147, 64.66498208508824], // lat, long
-                zoom: 6,
-                controls: ['zoomControl', 'fullscreenControl']
-            });
-            // Objects collection
-            let collection = {
-                type: "FeatureCollection",
-                features: features
-            };
+        {{--function init() {--}}
+        {{--    let projects = @json($projects, JSON_UNESCAPED_UNICODE);--}}
+        {{--    let features = [];--}}
+        {{--    for (const [key, project] of Object.entries(projects)) {--}}
+        {{--        features.push({--}}
+        {{--            type: "Feature",--}}
+        {{--            id: key,--}}
+        {{--            geometry: {--}}
+        {{--                type: "Point",--}}
+        {{--                coordinates: [project['point_y'], project['point_x']]--}}
+        {{--            },--}}
+        {{--            properties: {--}}
+        {{--                balloonContent: 'Проект: ' + project['name'] + '<br>' + project['region']--}}
+        {{--            }--}}
+        {{--        })--}}
+        {{--    }--}}
+        {{--    let map = new ymaps.Map('map', {--}}
+        {{--        center: [41.61094654336147, 64.66498208508824], // lat, long--}}
+        {{--        zoom: 6,--}}
+        {{--        controls: ['zoomControl', 'fullscreenControl']--}}
+        {{--    });--}}
+        {{--    // Objects collection--}}
+        {{--    let collection = {--}}
+        {{--        type: "FeatureCollection",--}}
+        {{--        features: features--}}
+        {{--    };--}}
 
-            // Object Manager
-            objectManager = new ymaps.ObjectManager({clusterize: true});
-            objectManager.add(collection);
-            map.behaviors.disable('scrollZoom');
-            map.geoObjects.add(objectManager);
+        {{--    // Object Manager--}}
+        {{--    objectManager = new ymaps.ObjectManager({clusterize: true});--}}
+        {{--    objectManager.add(collection);--}}
+        {{--    map.behaviors.disable('scrollZoom');--}}
+        {{--    map.geoObjects.add(objectManager);--}}
 
-        }
+        {{--}--}}
     </script>
     <script>
         var array=[];

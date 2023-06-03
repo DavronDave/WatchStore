@@ -23,7 +23,7 @@
         <!-- begin panel-heading -->
         <div class="panel-heading">
             <h4 class="panel-title">Список языков</h4>
-{{--            <a href="{{route('admin.language.create')}}" class="btn btn-xs btn-success mr-3">Добавить язык</a>--}}
+            <a href="{{route('admin.language.create')}}" class="btn btn-xs btn-success mr-3">Добавить язык</a>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i
                         class="fa fa-expand"></i></a>

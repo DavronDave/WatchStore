@@ -12,9 +12,9 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = Contact::where('status', 1)->get();
-        $points = About::getSiteData();
-        return view('site.contacts', compact('points', 'contacts'));
+        /*$contacts = Contact::where('status', 1)->get();
+        $points = About::getSiteData();*/
+        return view('site.contacts'/* compact('points', 'contacts')*/);
     }
 
     public function storeFeedback(StoreFeedbackRequest $request)

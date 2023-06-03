@@ -141,8 +141,8 @@
 		@endisset
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<img src="{{ asset(auth()->user()->avatar) }}" alt="" />
-				<span class="d-none d-md-inline">{{ auth()->user()->name }}</span> <b class="caret"></b>
+{{--				<img src="{{ asset(auth()->user()->avatar) }}" alt="" />--}}
+{{--				<span class="d-none d-md-inline">{{ auth()->user()->name }}</span> <b class="caret"></b>--}}
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<a href="{{ route('admin.setting.edit') }}" class="dropdown-item">Настройки</a>

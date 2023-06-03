@@ -6,4 +6,5 @@ return [
 "documents" => "Нормативные акты",
 "contact" => "Контакты",
 "faq" => "ЧАВО",
+    "useful_links" => "USEFUL"
 ];

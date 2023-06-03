@@ -17,45 +17,25 @@ return [
         'title' => 'Рабочий стол',
         'url' => '/admin/home'
     ], [
-        'icon' => 'fa fa-map-marker-alt',
-        'title' => 'Проекты',
-        'url' => '/admin/projects/index',
-    ], [
         'icon' => 'fa fa-newspaper',
-        'title' => 'Новости',
-        'url' => 'javascript:;',
-        'caret' => true,
-        'sub_menu' => [[
-            'url' => '/admin/articles/index',
-            'title' => 'Новости',
-        ], [
-            'url' => '/admin/article-categories/index',
-            'title' => 'Категории новостей',
-        ]]
+        'title' => 'Banners',
+        'url' => '/admin/banners/index',
     ], [
-        'icon' => 'fa fa-file-alt',
-        'title' => 'Нормативные акты',
-        'url' => 'javascript:;',
-        'caret' => true,
-        'sub_menu' => [[
-            'url' => '/admin/regulations/index',
-            'title' => 'Нормативные акты',
-        ], [
-            'url' => '/admin/regulation-categories/index',
-            'title' => 'Категории',
-        ]]
+        'icon' => 'fa fa-map-marker-alt',
+        'title' => 'Product',
+        'url' => '/admin/products/index',
+    ],[
+        'icon' => 'fa fa-map-marker-alt',
+        'title' => 'Characteristics',
+        'url' => '/admin/characteristics/index',
     ], [
         'icon' => 'fa fa-address-book',
         'title' => 'Контакты',
         'url' => '/admin/contacts/index',
     ], [
         'icon' => 'fa fa-flag',
-        'title' => 'О проекте',
+        'title' => 'About',
         'url' => '/admin/about/index',
-    ], [
-        'icon' => 'fa fa-question-circle',
-        'title' => 'ЧАВО',
-        'url' => '/admin/faq/index',
     ], [
         'icon' => 'fa fa-comments',
         'title' => 'Заявки',

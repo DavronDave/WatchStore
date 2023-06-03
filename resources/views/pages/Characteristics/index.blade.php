@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Баннер')
+@section('title', 'Характеристика')
 
 @push('css')
 	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -11,18 +11,18 @@
 	<!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
         <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
-        <li class="breadcrumb-item active">Баннер</li>
+        <li class="breadcrumb-item active">Характеристика</li>
     </ol>
 	<!-- end breadcrumb -->
 	<!-- begin page-header -->
-	<h1 class="page-header">Баннер</h1>
+	<h1 class="page-header">Характеристика</h1>
 	<!-- end page-header -->
 	<!-- begin panel -->
 	<div class="panel panel-inverse">
 		<!-- begin panel-heading -->
         <div class="panel-heading">
-            <h4 class="panel-title">Список баннеры</h4>
-            <a href="{{route('admin.banner.create')}}" class="btn btn-xs btn-success mr-3">Добавить</a>
+            <h4 class="panel-title">Список Характеристики</h4>
+            <a href="{{route('admin.characteristic.create')}}" class="btn btn-xs btn-success mr-3">Добавить</a>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             </div>
@@ -36,24 +36,17 @@
 					<tr>
 						<th width="1%">#</th>
 						<th class="text-nowrap">Заголовок</th>
-						<th class="text-nowrap">Описание</th>
-						<th class="text-nowrap">Ссылка </th>
-						<th class="text-nowrap">Изображение</th>
-						<th class="text-nowrap">Статус</th>
-                        <th class="text-nowrap">Действие</th>
+						<th class="text-nowrap">Тип</th>
 					</tr>
 				</thead>
 				<tbody>
-                    @foreach($banners as $banner)
+                    @foreach($characteristics as $characteristic)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $banner->title }}</td>
-                            <td>{{ $banner->description }}</td>
-                            <td>{{ $banner->link }}</td>
-                            <td>{{ $banner->image }}</td>
-                            <td>@if($banner->status == true) <i class="fa fa-check-circle" style="color: green"></i> @else <i class="fa fa-times-circle" style="color: red"></i> @endif </td>
+                            <td>{{ $characteristic->name }}</td>
+                            <td>{{ $characteristic->type }}</td>
                             <td align="center">
-                                <a href="{{route('admin.banner.edit', ['id'=>$banner->id])}}" class="btn btn-icon btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{route('admin.characteristic.edit', ['id'=>$characteristic->id])}}" class="btn btn-icon btn-primary"><i class="fas fa-pencil-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

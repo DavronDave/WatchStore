@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col left__news">
                         @foreach($data['articles'] as $article)
-                            <a href="{{ route('site.news-show', ['article' => $article['id']]) }}" class="general__news"
+                            <a href="{{ route('site.news-show', ['product' => $article['id']]) }}" class="general__news"
                                style="background-image: url({{ $article['image'] }});">
                                 <div class="date__news">
                                     <span class="date">{{ date('d.m.Y H:i', strtotime($article['published_date'])) }}</span>
@@ -36,7 +36,7 @@
                             @foreach($data['articles'] as $article)
                                 @if($loop->index != 0)
                                     <div class="item__news">
-                                        <a href="{{ route('site.news-show', ['article' => $article['id']]) }}" class="img">
+                                        <a href="{{ route('site.news-show', ['product' => $article['id']]) }}" class="img">
                                             <img src="{{ $article['cover_image'] }}" alt="">
                                         </a>
                                         <div class="text">
@@ -46,7 +46,7 @@
                                                     <img src="/site/images/eye__black.svg" alt="">{{ $article['quantity_views'] }}
                                                 </span>
                                             </div>
-                                            <a class="title__link" href="{{ route('site.news-show', ['article' => $article['id']]) }}">
+                                            <a class="title__link" href="{{ route('site.news-show', ['product' => $article['id']]) }}">
                                                 {{ $article['title'] }}</a>
                                             <p>{{ mb_substr(strip_tags($article['description']), 0, 150) }}...</p>
                                         </div>

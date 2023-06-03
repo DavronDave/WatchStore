@@ -29,9 +29,9 @@
                 <div class="result__search">
                     @foreach($response['articles'] as $article)
                         <div class="item">
-                            <a href="{{ route('site.news-show', ['article' => $article['id']]) }}" class="img"><img src="{{ $article['cover_image'] }}" alt=""></a>
+                            <a href="{{ route('site.news-show', ['product' => $article['id']]) }}" class="img"><img src="{{ $article['cover_image'] }}" alt=""></a>
                             <div class="text">
-                                <a href="{{ route('site.news-show', ['article' => $article['id']]) }}">{{ $article['title'] }}</a>
+                                <a href="{{ route('site.news-show', ['product' => $article['id']]) }}">{{ $article['title'] }}</a>
                                 <p>{{ mb_substr(strip_tags($article['description']), 0, 150) }}...</p>
                             </div>
                         </div>

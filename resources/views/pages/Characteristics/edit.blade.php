@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Баннер')
+@section('title', 'Характеристика')
 
 @push('css')
 	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -11,11 +11,11 @@
 	<!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
         <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
-        <li class="breadcrumb-item active">Баннер</li>
+        <li class="breadcrumb-item active">Характеристика</li>
     </ol>
 	<!-- end breadcrumb -->
 	<!-- begin page-header -->
-	<h1 class="page-header">Баннер</h1>
+	<h1 class="page-header">Характеристика</h1>
 	<!-- end page-header -->
 	<!-- begin panel -->
 	<div class="panel panel-inverse">
@@ -48,7 +48,7 @@
                                       <label for="name[{{$lang['url']}}]" class="font-weight-bold">Заголовок баннера:</label>
                                       <input type="text" name="name[{{$lang['url']}}]" id="name[{{$lang['url']}}]"
                                              placeholder="Введите баннер" class="form-control mb-3"
-                                             value="{{ old('name.'.$lang['url']) }}">
+                                             value="{{ $characteristic['name'][$lang['url']] }}">
                                       @error('name.'.$lang['url'])
                                       <span class="text-danger">
                                         {{ $message }}
@@ -59,7 +59,7 @@
                                       <label for="name" class="font-weight-bold">Тип:</label> <br>
                                       <select name="type" id="type" class="form-control" onchange="changeTypeName(this)">
                                           @foreach($types as $key => $items)
-                                              <option value="{{$key}}" @if(old('type')==$key) selected @endif>{{$items}}</option>
+                                              <option value="{{$key}}" @if($characteristic['type']==$key) selected @endif>{{$items}}</option>
                                           @endforeach
                                       </select>
                                       @error('type')

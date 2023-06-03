@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Новости')
+@section('title', 'Продукты')
 
 @push('css')
 	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -10,19 +10,19 @@
 @section('content')
 	<!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
-        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Рабочий стол</a></li>
-        <li class="breadcrumb-item active">Новости</li>
+        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
+        <li class="breadcrumb-item active">Продукты</li>
     </ol>
 	<!-- end breadcrumb -->
 	<!-- begin page-header -->
-	<h1 class="page-header">Новости</h1>
+	<h1 class="page-header">Продукты</h1>
 	<!-- end page-header -->
 	<!-- begin panel -->
 	<div class="panel panel-inverse">
 		<!-- begin panel-heading -->
         <div class="panel-heading">
-            <h4 class="panel-title">Список новостей</h4>
-            <a href="{{ route('admin.product.create') }}" class="btn btn-xs btn-success mr-3">Добавить</a>
+            <h4 class="panel-title">список продуктов</h4>
+            <a href="{{route('admin.product.create')}}" class="btn btn-xs btn-success mr-3">Добавить</a>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             </div>
@@ -35,26 +35,42 @@
 				<thead>
 					<tr>
 						<th width="1%">#</th>
-						<th class="text-nowrap">Название</th>
-						<th class="text-nowrap">Категория</th>
-						<th class="text-nowrap">Количество просмотров</th>
-						<th class="text-nowrap">Дата публикации</th>
-						<th class="text-nowrap">Статус</th>
-						<th class="text-nowrap">Действие</th>
-					</tr>
+						<th class="text-nowrap">Изображение</th>
+						<th class="text-nowrap">Заголовок</th>
+						<th class="text-nowrap">Старая цена</th>
+						<th class="text-nowrap">Скидка</th>
+						<th class="text-nowrap">Цена</th>
+						<th class="text-nowrap">Описание</th>
+						<th class="text-nowrap">Функция</th>
+						<th class="text-nowrap">Cтатус</th>
+						<th class="text-nowrap">Редактировать</th>
+                        <th class="text-nowrap">Удалить</th>
+                    </tr>
 				</thead>
 				<tbody>
-                    @foreach($articles as $item)
+                    @foreach($products as $product)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->category->name }}</td>
-                            <td>{{ $item->quantity_views }}</td>
-                            <td>{{ $item->published_date }}</td>
-                            <td>@if($item->status == true) <i class="fa fa-check-circle" style="color: green"></i> @else <i class="fa fa-times-circle" style="color: red"></i> @endif </td>
+                            <td align="center"><img src="{{ $product->image }}" width="30px" align="center"></td>
+                            <td>{{ $product->title }}</td>
+                            <td>{{ $product->old_price }}</td>
+                            <td>{{ $product->discount }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->function }}</td>
+                            <td>@if($product->status == true) <i class="fa fa-check-circle" style="color: green"></i> @else <i class="fa fa-times-circle" style="color: red"></i> @endif </td>
                             <td align="center">
-                                <a href="{{ route('admin.product.edit', ['product' => $item->id]) }}" class="btn btn-icon btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{route('admin.product.edit', ['id'=>$product->id])}}" class="btn btn-icon btn-primary"><i class="fas fa-pencil-alt"></i></a>
                             </td>
+                            <td align="center">
+                                <form action="{{route('admin.product.destroy', ['id'=>$product->id])}}"  method="post">
+                                    @csrf
+                                    <button onclick="return confirm('Are you sure to delete?')" type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </button>
+                                </form>
+                            </td>
+
                         </tr>
                     @endforeach
 				</tbody>

@@ -14,11 +14,8 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $projects = Project::where('status', 1)->get();
         $counts = [
-            'articles' => Article::where('status', 1)->count(),
             'requests' => RequestModel::count(),
-            'documents' => Regulation::where('status', 1)->count(),
         ];
         $to = $request->get('to', date("Y-m-d"));
         $from = $request->get('from', date('Y-m-d', strtotime('-10 days', strtotime($to))));
@@ -31,6 +28,6 @@ class DashboardController extends Controller
             $visit_count[$visit->date]++;
         }
         $max = $visit_count ? max($visit_count) : 0;
-        return view('pages/dashboard-v3', compact('projects', 'counts', 'visit_count', 'max'));
+        return view('pages/dashboard-v3', compact('counts', 'visit_count', 'max'));
     }
 }

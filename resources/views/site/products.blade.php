@@ -14,47 +14,47 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- bootstrap css -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/site/css/bootstrap.min.css">
 <!-- style css -->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="/site/css/style.css">
 <!-- Responsive-->
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="/site/css/responsive.css">
 <!-- fevicon -->
-<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<link rel="icon" href="/site/images/fevicon.png" type="image/gif" />
 <!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="/site/css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <!-- owl stylesheets -->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/site/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/site/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
 	<!-- header section start -->
 	<div class="header_section">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.blade.php"><img src="images/logo.png"></a></div>
+            <div class="logo"><a href="index.blade.php"><img src="/site/images/logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('index') }}">HOME</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('about') }}">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{url('products')}}">OUR PRODUCTS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{url('contact')}}">CONTACT US</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><img src="images/search-icon.png"></a>
-                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('site.index') }}">HOME</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('site.about') }}">ABOUT</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('site.products') }}">OUR PRODUCTS</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{route('site.contact')}}">CONTACT US</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><img src="/site/images/search-icon.png"></a>
+                  </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="#">SIGN IN</a>
                 </li>
@@ -67,40 +67,30 @@
 	</div>
 	<!-- header section end -
   <!-- product section start -->
-  <div class="product_section layout_padding">
-    <div class="container">
-      <div class="product_text">Our <span style="color: #5ca0e9;">products</span></div>
-      <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
-      <div class="product_section_2">
-        <div class="row">
-          @foreach($products as $product)
-                <div class="col-md-6">
-                    <div class="">
-                        <img src="images/hk8.png">
-                    </div>
-
-                    <div class="price_text">
-                        <h2 class="text-secondary "> <del>{{$product->old_price}}</del><span class="text-danger">  -{{$product->discount}}%</span></h2>
-                        Price <span style="color: #3a3a38; text-transform: lowercase">{{$product->price}}  sum</span>
-                    </div>
-                    <h1 class="game_text">{{$product->title}}</h1>
-                    <p class="long_text">{{$product->description}}</p>
-                    <a class="btn btn-primary" href="{{route('product.show', ['id' => $product->id])}}">See more</a>
-                </div>
-          @endforeach
-          {{--<div class="col-md-6">
-            <div class="image_2"><img src="images/t900.png"></div>
-            <div class="price_text">Price $ <span style="color: #3a3a38;">300</span></div>
-            <h1 class="game_text">Video Game</h1>
+    <div class="product_section layout_padding">
+        <div class="container">
+            <div class="product_text">Our <span style="color: #5ca0e9;">products</span></div>
             <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
-          </div>--}}
+            <div class="product_section_2">
+                <div class="row">
+                    @foreach($products as $product)
+                        <div class="col-md-3" align="center">
+                            <div class="image_2"><img src="{{$product->image}}" style="height: 250px; width: 250px;"></div>
+                            <div class="price_text">
+                                <h3 class="text-secondary font-weight-bolder "> <del>{{$product->old_price}}</del><span class="text-danger font-s">  -{{$product->discount}}%</span></h3>
+                                Price $ <span style="color: #3a3a38; font-size: 22px;">{{$product->price}}</span>
+                            </div>
+                            <a href="{{ route('site.product', ['id'=>$product->id])}}" class="game_text">{{$product->title}}</a>
+                            <p class="long_text">{{$product->description}}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="see_main">
+                <div class="see_bt"><a href="#">See More</a></div>
+            </div>
         </div>
-      </div>
-      <div class="see_main">
-        <div class="see_bt"><a href="#">See More</a></div>
-      </div>
     </div>
-  </div>
   <!-- product section end -->
   <!-- footer section start -->
     <div class="section_footer ">
@@ -130,10 +120,10 @@
             </div>
             <div class="social_icon">
                 <ul>
-                    <li><a href="#"><img src="images/fb-icon.png"></a></li>
-                    <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-                    <li><a href="#"><img src="images/linkdin-icon.png"></a></li>
-                    <li><a href="#"><img src="images/instagram-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/fb-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/twitter-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/linkdin-icon.png"></a></li>
+                    <li><a href="#"><img src="/site/images/instagram-icon.png"></a></li>
                 </ul>
             </div>
         </div>

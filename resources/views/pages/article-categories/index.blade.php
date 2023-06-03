@@ -37,7 +37,7 @@
                         <h4 class="modal-title">Добавить</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <form action="{{route('admin.article-category.store')}}" class="form-group"
+                    <form action="{{route('admin.product-category.store')}}" class="form-group"
                           enctype="multipart/form-data" method="POST">
                         <!-- Modal body -->
                         @csrf
@@ -144,7 +144,7 @@
                     <h4 class="modal-title">Редактировать</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="{{route('admin.article-category.update')}}" class="form-group"
+                <form action="{{route('admin.product-category.update')}}" class="form-group"
                       enctype="multipart/form-data" method="POST">
                     <!-- Modal body -->
                     @csrf
@@ -237,7 +237,7 @@
         function editCategory(category_id) {
             if (category_id) {
                 $.ajax({
-                    url: "{{ url('/admin/article-categories/edit') }}/" + category_id,
+                    url: "{{ url('/admin/product-categories/edit') }}/" + category_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

@@ -1,3 +1,4 @@
+{{--
 @extends('site.layouts.app')
 @section('title', __('menus.contact'))
 
@@ -32,7 +33,8 @@
                 <div class="col left__contacts">
                     <h2 class="top__border">{{ __('menus.contact') }}</h2>
                     <ul>
-                        @foreach($contacts as $contact)
+                       --}}
+{{-- @foreach($contacts as $contact)
                         <li>
                             @if($contact['type'] == 'address')
                                 <img src="{{ $contact['icon'] }}" alt="" width="25px"> {{ $contact['value'] }}
@@ -47,13 +49,15 @@
                                 </a>
                             @endif
                         </li>
-                        @endforeach
+                        @endforeach--}}{{--
+
                     </ul>
                 </div>
                 <div class="col right__contacts">
                     <h2>{{ __('locale.feedback') }}</h2>
                     <form action="{{ route('site.feedback-store') }}" enctype="multipart/form-data" method="POST">
-                        @csrf
+                       --}}
+{{-- @csrf
                         <div class="row">
                             @if(session()->has('success'))
                                 <span class="col-12 alert text-success">
@@ -83,7 +87,8 @@
                                 </span>
                                 @enderror
                                 <textarea name="message" placeholder="{{ __('locale.message') }}">{{ old('message') }}</textarea>
-                            </div>
+                            </div>--}}{{--
+
                         </div>
                         <button class="btn__link" type="submit">{{ __('locale.submit') }}</button>
                     </form>
@@ -130,3 +135,6 @@
     </script>
 @endsection
 
+--}}
+
+<h1>Hello Contacts</h1>

@@ -26,6 +26,7 @@ class AboutController extends Controller
 
     public function update(UpdateAboutRequest $request)
     {
+        //dd($request->validated());
         About::edit($request->validated());
         return redirect()->route('admin.about.index');
     }

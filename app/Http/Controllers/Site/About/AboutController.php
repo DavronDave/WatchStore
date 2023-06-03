@@ -10,7 +10,7 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $data = About::getSiteData();
-        return view('site.about', compact('data'));
+        $data = About::all();
+        return view('site.about',compact('data'));
     }
 }

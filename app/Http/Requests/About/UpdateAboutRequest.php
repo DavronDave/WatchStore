@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\About;
 
+use App\Models\Basic\Lang;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateAboutRequest extends FormRequest
@@ -23,6 +24,7 @@ class UpdateAboutRequest extends FormRequest
      */
     public function rules()
     {
+        /*$default = Lang::where('default',1)->first();*/
         return [
             "logo" => 'image',
             "image" => 'image',
