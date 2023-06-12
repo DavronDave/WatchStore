@@ -10,7 +10,7 @@
 @section('content')
 	<!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
-        <li class="breadcrumb-item"><a href="#">Рабочий стол</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Рабочий стол</a></li>
         <li class="breadcrumb-item active">Баннер</li>
     </ol>
 	<!-- end breadcrumb -->
@@ -41,7 +41,6 @@
 						<th class="text-nowrap">Изображение</th>
 						<th class="text-nowrap">Статус</th>
                         <th class="text-nowrap">Действие</th>
-                        <th class="text-nowrap">Удалить</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,16 +52,18 @@
                             <td>{{ $banner->link }}</td>
                             <td>{{ $banner->image }}</td>
                             <td>@if($banner->status == true) <i class="fa fa-check-circle" style="color: green"></i> @else <i class="fa fa-times-circle" style="color: red"></i> @endif </td>
-                            <td align="center">
-                                <a href="{{route('admin.banner.edit', ['id'=>$banner->id])}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                            </td>
-                            <td align="center">
-                                <form action="{{route('admin.banner.destroy', ['id'=>$banner->id])}}"  method="post">
+                            <td>
+                                <div class="row justify-content-center">
+                                    <div class="mr-2">
+                                        <a href="{{route('admin.banner.edit', ['id'=>$banner->id])}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                    </div>
+                                    <form action="{{route('admin.banner.destroy', ['id'=>$banner->id])}}"  method="post">
                                     @csrf
-                                    <button onclick="return confirm('Are you sure to delete?')" type="submit" class="btn btn-danger">
-                                        <i class="fa fa-trash text-white"></i>
-                                    </button>
+                                        <button onclick="return confirm('Are you sure to delete?')" type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash text-white"></i>
+                                        </button>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

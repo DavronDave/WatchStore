@@ -12,8 +12,8 @@ class Characteristic extends Model
     use HasFactory;
     const TYPES = [
         'number' => 'Номер',
-        'string' => 'Стринг',
-        'text' => 'Текст'
+        'text' => 'Стринг',
+        'text[]' => 'Текст'
     ];
 
     protected $guarded = [];

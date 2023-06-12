@@ -34,7 +34,7 @@
 <!-- header section start -->
 <div class="header_section">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo"><a href="index.html"><img src="/site/images/logo.png"></a></div>
+        <div class="logo"><a style="width: 15px;" href="index.html"><img src="/site/images/watches.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,12 +55,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"><img src="/site/images/search-icon.png"></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">SIGN IN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">REGISTER</a>
-                </li>
+               <li class="nav-item">
+                <div class="language drops">
+                    <span>
+                        <img src="{{ $languages[app()->getLocale()] }}" alt=""/>{{ $languages_name[app()->getLocale()] }}
+                    </span>
+                    <div class="body_dropdown">
+                        @foreach($languages as $url => $image)
+                            @if($url != app()->getLocale())
+                                <a href="{{ LaravelLocalization::getLocalizedURL($url, null, [], true) }}"><img src="{{ $image }}" alt=""/>{{ $languages_name[$url] }}</a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+               </li>
             </ul>
         </div>
     </nav>
@@ -118,8 +126,10 @@
             @endforeach
             </div>
         </div>
-        <div class="see_main">
-            <div class="see_bt"><a href="#">See More</a></div>
+        <div class="see_main ">
+            <div class="see_bt mb-4">
+               <button>See more</button>
+            </div>
         </div>
     </div>
 </div>
@@ -133,7 +143,7 @@
             </div>
             <div class="col-md-6">
                 <h1 class="about_text">ABOUT</h1>
-                <p class="lorem_text">{{$about->description}}</p>
+                <p class="lorem_text">{!!$about->description!!}</p>
             </div>
         </div>
     </div>
@@ -143,7 +153,7 @@
 <div class="section_footer ">
     <div class="container">
         <div class="footer_section_2">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <h2 class="account_text">About Us</h2>
                     <p class="ipsum_text_2">dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r</p>
@@ -162,7 +172,7 @@
                     <h2 class="account_text">Contact Us</h2>
                     <p class="ipsum_text_2">dolor sit amet, consectetur magna aliqua. quisdotempor incididunt ut e </p>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="social_icon">
             <ul>
@@ -178,21 +188,21 @@
 <!-- copyright section start -->
 <div class="copyright_section">
     <div class="container">
-        <p class="copyright_text">Copyright 2020 All Right Reserved By <a href="https://html.design/"> Free html Templates</p>
+        <p class="copyright_text">Copyright 2023 All Right</p>
     </div>
 </div>
 <!-- copyright section end -->
 <!-- Javascript files-->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/jquery-3.0.0.min.js"></script>
-<script src="/js/plugin.js"></script>
+<script src="/site/js/jquery.min.js"></script>
+<script src="/site/js/popper.min.js"></script>
+<script src="/site/js/bootstrap.bundle.min.js"></script>
+<script src="/site/js/jquery-3.0.0.min.js"></script>
+<script src="/site/js/plugin.js"></script>
 <!-- sidebar -->
-<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/js/custom.js"></script>
+<script src="/site/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/site/js/custom.js"></script>
 <!-- javascript -->
-<script src="/js/owl.carousel.js"></script>
+<script src="/site/js/owl.carousel.js"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 <script>
     $(document).ready(function(){

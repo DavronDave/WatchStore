@@ -34,7 +34,7 @@
 <!-- header section start -->
 <div class="header_section">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo"><a href="index.blade.php"><img src="/site/images/logo.png"></a></div>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,12 +55,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"><img src="/site/images/search-icon.png"></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">SIGN IN</a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">REGISTER</a>
-                </li>
+                    <div class="language drops">
+                        <span>
+                            <img src="{{ $languages[app()->getLocale()] }}" alt=""/>{{ $languages_name[app()->getLocale()] }}
+                        </span>
+                        <div class="body_dropdown">
+                            @foreach($languages as $url => $image)
+                                @if($url != app()->getLocale())
+                                    <a href="{{ LaravelLocalization::getLocalizedURL($url, null, [], true) }}"><img src="{{ $image }}" alt=""/>{{ $languages_name[$url] }}</a>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                   </li>
             </ul>
         </div>
     </nav>

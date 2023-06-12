@@ -12,25 +12,22 @@
 
 
 @section('content')
-   {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif--}}
+<ol class="breadcrumb float-xl-right">
+    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Рабочий стол</a></li>
+    <li class="breadcrumb-item"><a href="{{route('admin.banner.index')}}">Баннер</a></li>
+    <li class="breadcrumb-item active">Создать</li>
+</ol>
+<h1 class="page-header">Баннер</h1>
     <div class="panel panel-inverse">
-        <h1 class="page-header">Баннер</h1>
+
         <div class="panel-heading">
             <h4 class="panel-title">Создать баннер</h4>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             </div>
         </div>
-
-        <form class="p-10" action="{{route('admin.banner.store')}}" method="post" enctype="multipart/form-data">
+        <div class="panel-body">
+            <form class="p-10" action="{{route('admin.banner.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xl-8">
@@ -45,17 +42,6 @@
                                 </a>
                             </li>
                         @endforeach
-                {{--        <input type="hidden" name="status" value="0">
-                        <label for="" class="font-weight-bold m-5 p-5">Статус:</label>
-                        <div class="switcher p-5">
-                            <input type="checkbox" name="status" id="status" {{ old('status')?'checked':'' }} value="1">
-                            <label for="status"></label>
-                        </div>
-                        @error('status')
-                        <span class="text-danger">
-                                {{ $message }}
-                            </span>
-                        @enderror--}}
                     </ul>
                     <!-- end nav-tabs -->
                     <!-- begin tab-content -->
@@ -87,40 +73,45 @@
                     </div>
                 </div>
 
-                <div class="col-1">
-                        <label for="status" class="font-weight-bold">Статус:</label> <br>
-                        <div class="switcher">
-                            <input type="checkbox" name="status" id="status" @if(old('status')!==null) {{ old('status')==1?'checked':'' }} @else checked @endif value="1" >
-                            <label for="status"></label>
+                <div class="col-xl-4 mt-5">
+                    <div class="row col-xl-12 mt-2">
+                        <label for="link" class="font-weight-bold">Ссылки:</label> <br>
+                        <input type="text" class="form-control" id="link" name="link" placeholder="Ссылки">
+                        @error('link')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-xl-6">
+                            <label for="file" class="font-weight-bold">Изображение:</label> <br>
+                            <input type="file" name="image" class="form-control" id="file">
+                            @error('image')
+                            <span class="text-danger">
+                                 {{ $message }}
+                            </span>
+                        @enderror
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="status" class="font-weight-bold">Статус:</label> <br>
+                            <div class="switcher">
+                                <input type="checkbox" name="status" id="status" @if(old('status')!==null) {{ old('status')==1?'checked':'' }} @else checked @endif value="1" >
+                                <label for="status"></label>
+                            </div>
                         </div>
                     </div>
-            </div>
-            <div class="row m-t-5">
-                <div class="col-6 ">
-                    <label for="link" class="font-weight-bold">Ссылки:</label> <br>
-                    <input type="text" class="form-control" id="link" name="link" placeholder="Ссылки">
-                    @error('link')
-                    <span class="text-danger">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div>
-                <div class="col-5">
-                    <label for="file" class="font-weight-bold">Изображение:</label> <br>
-                    <input type="file" name="image" class="form-control" id="file">
-                    @error('image')
-                    <span class="text-danger">
-                        {{ $message }}
-                    </span>
-                    @enderror
                 </div>
             </div>
-            <div class="float-right mt-3">
+            
+            <div class="float-right mt-3 justify-content-end">
                 <a href="{{route('admin.banner.index')}}" class="btn btn-danger">
                     <i class="fas fa-arrow-circle-left"></i> Назад</a>
                 <button class="btn btn-aqua p-6" type="submit">Сохранить</button>
             </div>
-        </form>
+            </form>
+       </div>
+    </div>
         </div
 @endsection
 

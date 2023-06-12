@@ -13,128 +13,141 @@
 
 @section('content')
 
+<!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Рабочий стол</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.product.index')}}">Продукты</a></li>
+        <li class="breadcrumb-item active">Создать</li>
+    </ol>
+	<!-- end breadcrumb -->
+	<!-- begin page-header -->
+	<h1 class="page-header">Продукт</h1>
+	<!-- end page-header -->
+	<!-- begin panel -->
     <div class="panel panel-inverse">
-        <h1 class="page-header">Продукт</h1>
         <div class="panel-heading">
             <h4 class="panel-title">Создать продукт</h4>
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             </div>
         </div>
-        <form action="{{route('admin.product.store')}}" method="post" class="p-10"  enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-                <div class="col-xl-8">
-                    <!-- begin nav-tabs -->
-                    <ul class="nav nav-pills m-10">
-                        @foreach($languages as $lang)
-                            <li class="nav-item">
-                                <a href="#tab-desc-{{$lang['url']}}" data-toggle="tab"
-                                   class="nav-link{{(!$loop->index)?' active':''}}">
-                                    <span class="d-sm-none">{{ $lang['name'] }}</span>
-                                    <span class="d-sm-block d-none">{{ $lang['name'] }}</span>
-                                </a>
-                            </li>
-                        @endforeach
-                        {{--        <input type="hidden" name="status" value="0">
-                                <label for="" class="font-weight-bold m-5 p-5">Статус:</label>
-                                <div class="switcher p-5">
-                                    <input type="checkbox" name="status" id="status" {{ old('status')?'checked':'' }} value="1">
+        <div class="panel-body">
+            <form action="{{route('admin.product.store')}}" method="post" class="p-10"  enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-xl-8">
+                        <!-- begin nav-tabs -->
+                        <ul class="nav nav-pills m-10">
+                            @foreach($languages as $lang)
+                                <li class="nav-item">
+                                    <a href="#tab-desc-{{$lang['url']}}" data-toggle="tab"
+                                    class="nav-link{{(!$loop->index)?' active':''}}">
+                                        <span class="d-sm-none">{{ $lang['name'] }}</span>
+                                        <span class="d-sm-block d-none">{{ $lang['name'] }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                            {{--        <input type="hidden" name="status" value="0">
+                                    <label for="" class="font-weight-bold m-5 p-5">Статус:</label>
+                                    <div class="switcher p-5">
+                                        <input type="checkbox" name="status" id="status" {{ old('status')?'checked':'' }} value="1">
+                                        <label for="status"></label>
+                                    </div>
+                                    @error('status')
+                                    <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror--}}
+                        </ul>
+                        <!-- end nav-tabs -->
+                        <!-- begin tab-content -->
+                        <div class="tab-content">
+                            @foreach($languages as $lang)
+                                <!-- begin tab-pane -->
+                                <div class="tab-pane fade{{(!$loop->index)?' active show':''}}" id="tab-desc-{{$lang['url']}}">
+
+                                    <label for="title[{{$lang['url']}}]" class="font-weight-bold">Заголовок продукт:</label>
+                                    <input type="text" name="title[{{$lang['url']}}]" id="title[{{$lang['url']}}]"
+                                        placeholder="Введите баннер" class="form-control mb-3"
+                                        value="{{ old('title.'.$lang['url']) }}">
+                                    @error('title.'.$lang['url'])
+                                    <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+
+                                    <label for="description[{{$lang['url']}}]" class="font-weight-bold">Описание:</label>
+                                    <textarea class="form-control mb-3" name="description[{{$lang->url}}]" rows="3">{{old('description.'.$lang->url)}}</textarea>
+                                    @error("description.".$lang->url)
+                                    <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+
+                                    <label for="function[{{$lang['url']}}]" class="font-weight-bold">Функция:</label>
+                                    <textarea class="form-control mb-3" name="function[{{$lang->url}}]" rows="3">{{old('function.'.$lang->url)}}</textarea>
+                                    @error("function.".$lang->url)
+                                    <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!-- end tab-pane -->
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-xl-4 mt-5">
+                        <div class="row col-xl-12 mt-2">
+                            <label for="oldprice" class="font-weight-bold">Старая цена:</label> <br>
+                            <input type="number" class="form-control" id="oldprice" name="old_price" placeholder="Старая цена">
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-xl-6">
+                                <label for="discount" class="font-weight-bold">Скидка(%):</label> <br>
+                                <input type="number" class="form-control" id="discount" name="discount" placeholder="Скидка ">
+                            </div>
+                            <div class="col-xl-6">
+                                <label for="status" class="font-weight-bold">Статус:</label> <br>
+                                <div class="switcher">
+                                    <input type="checkbox" name="status" id="status" @if(old('status')!==null) {{ old('status')==1?'checked':'' }} @else checked @endif value="1" >
                                     <label for="status"></label>
                                 </div>
-                                @error('status')
-                                <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror--}}
-                    </ul>
-                    <!-- end nav-tabs -->
-                    <!-- begin tab-content -->
-                    <div class="tab-content">
-                        @foreach($languages as $lang)
-                            <!-- begin tab-pane -->
-                            <div class="tab-pane fade{{(!$loop->index)?' active show':''}}"
-                                 id="tab-desc-{{$lang['url']}}">
-
-                                <label for="title[{{$lang['url']}}]" class="font-weight-bold">Заголовок продукт:</label>
-                                <input type="text" name="title[{{$lang['url']}}]" id="title[{{$lang['url']}}]"
-                                       placeholder="Введите баннер" class="form-control mb-3"
-                                       value="{{ old('title.'.$lang['url']) }}">
-                                @error('title.'.$lang['url'])
-                                <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-
-                                <label for="description[{{$lang['url']}}]" class="font-weight-bold">Описание:</label>
-                                <textarea class="form-control" name="description[{{$lang->url}}]" rows="3">{{old('description.'.$lang->url)}}</textarea>
-                                @error("description.".$lang->url)
-                                <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-
-                                <label for="function[{{$lang['url']}}]" class="font-weight-bold">Функция:</label>
-                                <textarea class="form-control" name="function[{{$lang->url}}]" rows="3">{{old('function.'.$lang->url)}}</textarea>
-                                @error("function.".$lang->url)
-                                <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
                             </div>
-                            <!-- end tab-pane -->
-                        @endforeach
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-xl-6">
+                                <label for="file" class="font-weight-bold">Изображение:</label> <br>
+                                <input type="file" name="image" class="form-control" id="file">
+                            </div>
+                            <div class="col-xl-6" >
+                                <label>Choose Images</label> <br>
+                                <input type="file" class="form-control"  name="images[]" multiple>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
-
-                <div class="col-5">
-                    <label for="oldprice" class="font-weight-bold">Старая цена:</label> <br>
-                    <input type="number" class="form-control" id="oldprice" name="old_price" placeholder="Старая цена">
+                
+                <h3 class="mt-3">Характеристики</h3>
+                <div class="row m-t-5">
+                    @foreach($characteristics as $key)
+                        <div class="col-4" >
+                            <label class="font-weight-bold" for="{{ $loop->index }}">{{ $key->name }}</label><br>
+                            @if($key->type =='textarea')
+                                <textarea name="characteristics[{{ $key->id }}]" ></textarea>
+                            @else
+                                <input name="characteristics[{{ $key->id }}]" type="{{ $key->type }}" id="{{ $loop->index }}" class="form-control">
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
-                <div class="col-1">
-                    <label for="discount" class="font-weight-bold">Скидка(%):</label> <br>
-                    <input type="number" class="form-control" id="discount" name="discount" placeholder="Скидка ">
+                <div class="float-right mt-3 justify-content-end">
+                    <a href="{{route('admin.product.index')}}" class="btn btn-danger">
+                        <i class="fas fa-arrow-circle-left"></i> Назад</a>
+                    <button class="btn btn-aqua p-6" type="submit">Сохранить</button>
                 </div>
-                <div class="col-1">
-                    <label for="status" class="font-weight-bold">Статус:</label> <br>
-                    <div class="switcher">
-                        <input type="checkbox" name="status" id="status" @if(old('status')!==null) {{ old('status')==1?'checked':'' }} @else checked @endif value="1" >
-                        <label for="status"></label>
-                    </div>
-                </div>
-            </div>
-            <div class="row m-t-5">
-                <div class="col-2">
-                    <label for="file" class="font-weight-bold">Изображение:</label> <br>
-                    <input type="file" name="image" class="form-control" id="file">
-                </div>
-                <div class="col-2" >
-                    <label>Choose Images</label> <br>
-                    <input type="file" class="form-control"  name="images[]" multiple>
-                </div>
-
-            </div>
-            <h3 class="mt-3">Характеристики</h3>
-            <div class="row m-t-5" name="characteristics" >
-                @foreach($characteristics as $key)
-                    <div class="col-2" >
-                        <label class="font-weight-bold" for="{{$key}}">{{$key->name}}</label><br>
-                        @if($key->type=='number')
-                            <input name="number" type="number" id="{{$key}}">
-                        @elseif($key->type=='text')
-                            <textarea name="text" ></textarea>
-                        @else
-                            <input name="string" type="text" id="{{$key}}">
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-            <div class="float-right mt-3 justify-content-end">
-                <a href="{{route('admin.product.index')}}" class="btn btn-danger">
-                    <i class="fas fa-arrow-circle-left"></i> Назад</a>
-                <button class="btn btn-aqua p-6" type="submit">Сохранить</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div
 @endsection
 

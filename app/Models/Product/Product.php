@@ -44,12 +44,22 @@ class Product extends Model
             unset($data['images']);
         }
 
+        if (isset($data['characteristics'])) {
+            $characteristics = $data['characteristics'];
+            unset($data['characteristics']);
+        }
+
         $product = self::create($data);
 
 
         if (isset($images)) {
             ProductImage::saveImages($images, $product->id);
         }
+
+        if (isset($characteristics)) {
+            ProductCharacteristic::saveCharacteristics($characteristics, $product->id);
+        }
+
         foreach ($title as $key => $value) {
             PublicMethod::translateCreateOrUpdate('products', 'title', $key, $product->id, $value);
         }
@@ -91,12 +101,12 @@ class Product extends Model
         return $product;
     }
 
-    public function productImages()
+    public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    public function characteristic(){
+    public function characteristics(){
         return $this->belongsToMany(Characteristic::class)->withPivot('value');
     }
 }

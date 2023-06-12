@@ -32,6 +32,7 @@ class StoreProductRequest extends FormRequest
             "discount"=>'required',
             "function"=>'required',
             "status"=>'required|boolean',
+            "characteristics" => 'nullable'
         ];
     }
 }

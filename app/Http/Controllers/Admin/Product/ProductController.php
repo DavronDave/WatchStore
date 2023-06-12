@@ -28,6 +28,7 @@ class ProductController extends Controller
     }
 
     public function store(StoreProductRequest $request){
+        
         $product = Product::store($request->validated());
         return redirect(route('admin.product.index',['product' =>$product->id]));
     }
@@ -40,13 +41,13 @@ class ProductController extends Controller
         $product['title'] = PublicMethod::translateAllLang('products', $product['id'], 'title');
         $product['description'] = PublicMethod::translateAllLang('products', $product['id'], 'description');
         $product['function'] = PublicMethod::translateAllLang('products', $product['id'], 'function');
-        //dd($product);
         return view('pages/product/edit', compact('product', 'languages'));
     }
 
     public function update(UpdateProductRequest $request, $id){
         Product::edit($request->validated(),$id);
         return redirect(route('admin.product.index'));
+
     }
 
     public function destroy($id){

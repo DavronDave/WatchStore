@@ -55,12 +55,20 @@
                   <li class="nav-item">
                       <a class="nav-link" href="#"><img src="/site/images/search-icon.png"></a>
                   </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">SIGN IN</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">REGISTER</a>
-                </li>
+                  <li class="nav-item">
+                    <div class="language drops">
+                        <span>
+                            <img src="{{ $languages[app()->getLocale()] }}" alt=""/>{{ $languages_name[app()->getLocale()] }}
+                        </span>
+                        <div class="body_dropdown">
+                            @foreach($languages as $url => $image)
+                                @if($url != app()->getLocale())
+                                    <a href="{{ LaravelLocalization::getLocalizedURL($url, null, [], true) }}"><img src="{{ $image }}" alt=""/>{{ $languages_name[$url] }}</a>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                   </li>
               </ul>
             </div>
         </nav>
@@ -87,7 +95,7 @@
                 </div>
             </div>
             <div class="see_main">
-                <div class="see_bt"><a href="#">See More</a></div>
+                <div class="see_bt mb-4"><a href="#">See More</a></div>
             </div>
         </div>
     </div>
